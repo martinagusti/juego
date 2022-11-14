@@ -31,7 +31,18 @@ let btn13 = document.getElementById("btn13")
 let btn14 = document.getElementById("btn14")
 let btn15 = document.getElementById("btn15")
 let btn16 = document.getElementById("btn16")
+
 let refrescar = document.getElementById("refrescar")
+
+let conteo = document.getElementById("conteo")
+let rec = document.getElementById("rec")
+
+let clicks = 0
+let record = 100
+let aciertos = 0
+
+let botones = [btn1, btn2, btn3, btn4,btn5, btn6, btn7, btn8,btn9, btn10, btn11, btn12,btn13, btn14, btn15, btn16]
+let imagenes = [img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16]
 
 
 let array = ["boda2.jpg", "boda.jpg", "boda2.jpg", "boda.jpg", "boda3.jpg", "boda3.jpg", "boda4.jpg", "boda4.jpg", "foto5.jpg", "foto5.jpg", "foto6.jpg", "foto6.jpg", "foto7.jpg", "foto7.jpg", "foto8.jpg", "foto8.jpg"]
@@ -39,6 +50,24 @@ let array = ["boda2.jpg", "boda.jpg", "boda2.jpg", "boda.jpg", "boda3.jpg", "bod
 let check = ""
 let suma = 0
 
+let audioWin = document.getElementById("audioWin")
+let seleccion = document.getElementById("seleccion")
+let champions = document.getElementById("champions")
+
+
+let getRecord = JSON.parse(localStorage.getItem("record"))
+
+
+function traerRecord(){
+    
+    
+    rec.textContent = "RECORD: " +  getRecord
+    record = parseInt(getRecord)
+    
+
+}
+
+traerRecord()
 
 
 
@@ -57,135 +86,53 @@ function desordenar(array){
 
 
 desordenar(array)
-console.log(array)
+
 
 
 function funcion(){
 
- if(img1.src !== "http://127.0.0.1:5500/img.jpg"){
-    img1.style.opacity = 0
-    btn1.style.opacity = 0
-    btn1.disabled = true
+    for(let i = 0; i < botones.length; i++){
+        if(imagenes[i].src !== "/img.jpg"){
+            imagenes[i].style.opacity = 0
+            botones[i].style.opacity = 0
+            botones[i].disabled = true
+         }
     
- }
 
- if(img2.src !== "http://127.0.0.1:5500/img.jpg"){
-    img2.style.opacity = 0
-    btn2.style.opacity = 0
-    btn2.disabled = true
- }
-
-  if(img3.src !== "http://127.0.0.1:5500/img.jpg"){
-    img3.style.opacity = 0
-    btn3.style.opacity = 0
-    btn3.disabled = true
+    }
     
- }
- if(img4.src !== "http://127.0.0.1:5500/img.jpg"){
-    img4.style.opacity = 0
-    btn4.style.opacity = 0
-    btn4.disabled = true
- }
-
- if(img5.src !== "http://127.0.0.1:5500/img.jpg"){
-    img5.style.opacity = 0
-    btn5.style.opacity = 0
-    btn5.disabled = true
- }
- if(img6.src !== "http://127.0.0.1:5500/img.jpg"){
-    img6.style.opacity = 0
-    btn6.style.opacity = 0
-    btn6.disabled = true
- }
- if(img7.src !== "http://127.0.0.1:5500/img.jpg"){
-    img7.style.opacity = 0
-    btn7.style.opacity = 0
-    btn7.disabled = true
- }
- if(img8.src !== "http://127.0.0.1:5500/img.jpg"){
-    img8.style.opacity = 0
-    btn8.style.opacity = 0
-    btn8.disabled = true
- }
-
- if(img9.src !== "http://127.0.0.1:5500/img.jpg"){
-    img9.style.opacity = 0
-    btn9.style.opacity = 0
-    btn9.disabled = true
     
- }
-
- if(img10.src !== "http://127.0.0.1:5500/img.jpg"){
-    img10.style.opacity = 0
-    btn10.style.opacity = 0
-    btn10.disabled = true
- }
-
-  if(img11.src !== "http://127.0.0.1:5500/img.jpg"){
-    img11.style.opacity = 0
-    btn11.style.opacity = 0
-    btn11.disabled = true
-    
- }
- if(img12.src !== "http://127.0.0.1:5500/img.jpg"){
-    img12.style.opacity = 0
-    btn12.style.opacity = 0
-    btn12.disabled = true
- }
-
- if(img13.src !== "http://127.0.0.1:5500/img.jpg"){
-    img13.style.opacity = 0
-    btn13.style.opacity = 0
-    btn13.disabled = true
- }
- if(img14.src !== "http://127.0.0.1:5500/img.jpg"){
-    img14.style.opacity = 0
-    btn14.style.opacity = 0
-    btn14.disabled = true
- }
- if(img15.src !== "http://127.0.0.1:5500/img.jpg"){
-    img15.style.opacity = 0
-    btn15.style.opacity = 0
-    btn15.disabled = true
- }
- if(img16.src !== "http://127.0.0.1:5500/img.jpg"){
-    img16.style.opacity = 0
-    btn16.style.opacity = 0
-    btn16.disabled = true
- }
 
 
 }
 
 function funcion2(){
-    img1.src ="img.jpg"
-    img2.src ="img.jpg"
-    img3.src ="img.jpg"
-    img4.src ="img.jpg"
-    img5.src ="img.jpg"
-    img6.src ="img.jpg"
-    img7.src ="img.jpg"
-    img8.src ="img.jpg"
-    img9.src ="img.jpg"
-    img10.src ="img.jpg"
-    img11.src ="img.jpg"
-    img12.src ="img.jpg"
-    img13.src ="img.jpg"
-    img14.src ="img.jpg"
-    img15.src ="img.jpg"
-    img16.src ="img.jpg"
+
+for(let i = 0; i < imagenes.length; i++){
+imagenes[i].src = "img.jpg"
+
+}
+
+    
  }
 
 function descubrir(){
+   
+
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img1.src = array[0]
 
     if(check == array[0]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,500)
+        audioWin.play()
         
 
         
@@ -196,7 +143,7 @@ function descubrir(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,500)
         
         check = ""
         
@@ -204,22 +151,36 @@ function descubrir(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
+    partidaTerminada()
+
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+   
+    btn1.setAttribute("disabled", "disabled")
+
 
 }
     
 
 function descubrir2(){
-   
+    
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img2.src = array[1]
 
     if(check == array[1]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,500)
+        audioWin.play()
         
 
         
@@ -230,7 +191,7 @@ function descubrir2(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,500)
         
         check = ""
         
@@ -238,21 +199,34 @@ function descubrir2(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
+    partidaTerminada()
+
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn2.setAttribute("disabled", "disabled")
+
+
 
 }
 
 function descubrir3(){
-  
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img3.src = array[2]
 
     if(check == array[2]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -263,7 +237,7 @@ function descubrir3(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -271,22 +245,36 @@ function descubrir3(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
- 
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn3.setAttribute("disabled", "disabled")
+
+   
+    
+   
 
     
 }
 
 function descubrir4(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img4.src = array[3]
 
     if(check == array[3]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -297,7 +285,7 @@ function descubrir4(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -305,21 +293,35 @@ function descubrir4(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn4.setAttribute("disabled", "disabled")
+
+   
+   
 
     
 }
 
 function descubrir5(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img5.src = array[4]
 
     if(check == array[4]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -330,7 +332,7 @@ function descubrir5(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -338,22 +340,36 @@ function descubrir5(){
     console.log(check)
     console.log(suma)
     suma = 0
+
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn5.setAttribute("disabled", "disabled")
+
     
+  
 
     
 }
 
 
 function descubrir6(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img6.src = array[5]
 
     if(check == array[5]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -364,7 +380,7 @@ function descubrir6(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -372,22 +388,35 @@ function descubrir6(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
 
+    
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn6.setAttribute("disabled", "disabled")
+
+   
+  
     
 }
 
 
 function descubrir7(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img7.src = array[6]
 
     if(check == array[6]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -398,7 +427,7 @@ function descubrir7(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -406,22 +435,36 @@ function descubrir7(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
 
+    
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn7.setAttribute("disabled", "disabled")
+
+   
+    
+   
     
 }
 
 
 function descubrir8(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img8.src = array[7]
 
     if(check == array[7]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -432,7 +475,7 @@ function descubrir8(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -440,21 +483,34 @@ function descubrir8(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
+
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn8.setAttribute("disabled", "disabled")
+
+   
 
     
 }
 
 function descubrir9(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img9.src = array[8]
 
     if(check == array[8]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -465,7 +521,7 @@ function descubrir9(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -473,19 +529,33 @@ function descubrir9(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
+
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn9.setAttribute("disabled", "disabled")
+
+   
 
 }
 function descubrir10(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img10.src = array[9]
 
     if(check == array[9]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        console.log(img1.src)
+        audioWin.play()
         
 
         
@@ -496,7 +566,7 @@ function descubrir10(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -504,20 +574,34 @@ function descubrir10(){
     console.log(check)
     console.log(suma)
     suma = 0
+
+    
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn10.setAttribute("disabled", "disabled")
+
+   
     
 
 }
 
 function descubrir11(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img11.src = array[10]
 
     if(check == array[10]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -528,7 +612,7 @@ function descubrir11(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -536,19 +620,32 @@ function descubrir11(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
+
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn11.setAttribute("disabled", "disabled")
+
+  
 
 }
 function descubrir12(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img12.src = array[11]
 
     if(check == array[11]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -559,7 +656,7 @@ function descubrir12(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -567,20 +664,34 @@ function descubrir12(){
     console.log(check)
     console.log(suma)
     suma = 0
+
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn12.setAttribute("disabled", "disabled")
+
     
+   
 
 }
 
 function descubrir13(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img13.src = array[12]
 
     if(check == array[12]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -591,7 +702,7 @@ function descubrir13(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -599,20 +710,32 @@ function descubrir13(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
 
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn13.setAttribute("disabled", "disabled")
+
+  
 }
 
 function descubrir14(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img14.src = array[13]
 
     if(check == array[13]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -623,7 +746,7 @@ function descubrir14(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -631,20 +754,33 @@ function descubrir14(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn14.setAttribute("disabled", "disabled")
+
+   
 
 }
 
 function descubrir15(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img15.src = array[14]
 
     if(check == array[14]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -655,7 +791,7 @@ function descubrir15(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -663,19 +799,31 @@ function descubrir15(){
     console.log(check)
     console.log(suma)
     suma = 0
-    
 
+   
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
+    }
+    btn15.setAttribute("disabled", "disabled")
+
+   
 }
 function descubrir16(){
+    clicks++
+    conteo.textContent = `CONTEO: ${clicks}`
+    seleccion.play()
     img16.src = array[15]
 
     if(check == array[15]){
         console.log("GANASTE!!!")
+        aciertos++
         suma++
         check = ""
         
        
-        setTimeout(funcion,2000)
+        setTimeout(funcion,1000)
+        audioWin.play()
         
 
         
@@ -686,7 +834,7 @@ function descubrir16(){
     }else{
         console.log("Perdiste...")
         suma = 0
-        setTimeout(funcion2,2000)
+        setTimeout(funcion2,1000)
         
         check = ""
         
@@ -694,74 +842,41 @@ function descubrir16(){
     console.log(check)
     console.log(suma)
     suma = 0
+
     
-
-}
-function descubrir17(){
-    img17.src = array[16]
-
-    if(check == array[16]){
-        console.log("GANASTE!!!")
-        suma++
-        check = ""
-        
-       
-        setTimeout(funcion,2000)
-        
-
-        
-    }else if(check == "" && suma == 0){
-        check = array[16]
-        suma = 1
-       
-    }else{
-        console.log("Perdiste...")
-        suma = 0
-        setTimeout(funcion2,2000)
-        
-        check = ""
-        
+    partidaTerminada()
+    for(let i = 0; i < botones.length; i++){
+        botones[i].removeAttribute("disabled")
     }
-    console.log(check)
-    console.log(suma)
-    suma = 0
-    
+    btn16.setAttribute("disabled", "disabled")
+
+   
 
 }
-function descubrir18(){
-    img18.src = array[17]
 
-    if(check == array[17]){
-        console.log("GANASTE!!!")
-        suma++
-        check = ""
-        
-       
-        setTimeout(funcion,2000)
-        
-
-        
-    }else if(check == "" && suma == 0){
-        check = array[17]
-        suma = 1
-       
-    }else{
-        console.log("Perdiste...")
-        suma = 0
-        setTimeout(funcion2,2000)
-        
-        check = ""
-        
-    }
-    console.log(check)
-    console.log(suma)
-    suma = 0
-    
-
-}
 
 function refresh(){
     location.reload()
+    champions.stop()
 }
+
+
+
+function partidaTerminada(){
+
+    if(aciertos == 8){
+        champions.play()
+        conteo.textContent = "Partina finalizada con " + clicks + " clicks!"
+        if (clicks < record){
+            localStorage.setItem("record", JSON.stringify(clicks))  
+            rec.textContent = "RECORD: " + clicks
+
+        }
+    }
+    
+
+}
+
+
 
 
