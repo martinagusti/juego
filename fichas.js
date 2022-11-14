@@ -54,7 +54,7 @@ let audioWin = document.getElementById("audioWin")
 let seleccion = document.getElementById("seleccion")
 let champions = document.getElementById("champions")
 
-
+localStorage.setItem("record", "200") 
 let getRecord = JSON.parse(localStorage.getItem("record"))
 
 
