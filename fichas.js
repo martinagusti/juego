@@ -92,13 +92,14 @@ desordenar(array)
 function funcion(){
 
     for(let i = 0; i < botones.length; i++){
-        if(imagenes[i].src !== "/img.jpg"){
+        if(imagenes[i].src !== "https://legendary-sunflower-53f630.netlify.app/img.jpg"){
             imagenes[i].style.opacity = 0
             botones[i].style.opacity = 0
             botones[i].disabled = true
          }
-    
+         console.log(imagenes[i])
 
+    
     }
     
     
