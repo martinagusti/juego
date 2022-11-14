@@ -56,6 +56,7 @@ let champions = document.getElementById("champions")
 
 localStorage.setItem("record", "200") 
 let getRecord = JSON.parse(localStorage.getItem("record"))
+rec.textContent = "RECORD: "
 
 
 function traerRecord(){
